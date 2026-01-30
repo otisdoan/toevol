@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ToeVol - Thêm từ vựng mới</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee2b2b",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221010",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .form-input:focus {
+            border-color: #ee2b2b !important;
+            --tw-ring-color: rgba(238, 43, 43, 0.1) !important;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e7cfcf;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7cfcf] dark:border-[#3a2020] bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-[#1b0d0d] dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#1b0d0d] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">ToeVol</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f3e7e7] dark:bg-[#3a2020] text-[#1b0d0d] dark:text-white">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f3e7e7] dark:bg-[#3a2020] text-[#1b0d0d] dark:text-white">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJkej_y7wCAXu4HQS7aU6rtfnBlsZXobOiEIXonUkl_T-AFl6CA2nV0pUZG1u06u_lfQBhQjyf1nPvh-MdmSqfqA9bLpjimZCm1GNJAvvOLTwsGM3dV-mj3cOLBHgeOzLFtM3Av8vT9lhVC5jqPsZY1KiUx_-fGyNWQoQLSfDjMXCeAolrLkgh2IaYQ3D9Bx8nGwgSsnieb5TfJsWBKQRfcT02zRHtKqvrwRgLSOHow7Ce46ptIXG6rA2cfNoFS_sDGjh-wsoch5O-");'></div>
+</div>
+</header>
+<!-- Main Content / Modal Overlay -->
+<main class="flex-1 flex items-center justify-center p-6 sm:p-12">
+<div class="w-full max-w-[700px] bg-white dark:bg-black/20 rounded-xl shadow-2xl border border-[#e7cfcf] dark:border-[#3a2020] overflow-hidden">
+<!-- Headline Section -->
+<div class="border-b border-[#f3e7e7] dark:border-[#3a2020] py-6">
+<h2 class="text-primary tracking-tight text-[28px] font-bold leading-tight px-8 text-center">Thêm từ vựng mới</h2>
+<p class="text-gray-500 dark:text-gray-400 text-sm text-center mt-1">Làm phong phú thêm vốn từ vựng Toeic của bạn</p>
+</div>
+<div class="p-8 custom-scrollbar overflow-y-auto max-h-[70vh]">
+<form class="space-y-6">
+<!-- Top Grid: Word & Pronunciation -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-[#1b0d0d] dark:text-white text-base font-semibold">Từ tiếng Anh</label>
+<input class="form-input w-full rounded-lg text-[#1b0d0d] dark:text-white dark:bg-[#2a1818] border-[#e7cfcf] dark:border-[#4a2e2e] h-12 px-4 text-base focus:ring-primary/20" placeholder="e.g. Vocabulary" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[#1b0d0d] dark:text-white text-base font-semibold">Phiên âm</label>
+<input class="form-input w-full rounded-lg text-[#1b0d0d] dark:text-white dark:bg-[#2a1818] border-[#e7cfcf] dark:border-[#4a2e2e] h-12 px-4 text-base focus:ring-primary/20" placeholder="e.g. /vəʊˈkæbjələri/" type="text"/>
+</div>
+</div>
+<!-- Part of Speech & Meaning -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-[#1b0d0d] dark:text-white text-base font-semibold">Loại từ</label>
+<select class="form-input w-full rounded-lg text-[#1b0d0d] dark:text-white dark:bg-[#2a1818] border-[#e7cfcf] dark:border-[#4a2e2e] h-12 px-4 text-base focus:ring-primary/20">
+<option value="">Chọn loại từ</option>
+<option value="noun">Danh từ (n)</option>
+<option value="verb">Động từ (v)</option>
+<option value="adj">Tính từ (adj)</option>
+<option value="adv">Trạng từ (adv)</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[#1b0d0d] dark:text-white text-base font-semibold">Nghĩa tiếng Việt</label>
+<input class="form-input w-full rounded-lg text-[#1b0d0d] dark:text-white dark:bg-[#2a1818] border-[#e7cfcf] dark:border-[#4a2e2e] h-12 px-4 text-base focus:ring-primary/20" placeholder="Nhập nghĩa của từ..." type="text"/>
+</div>
+</div>
+<!-- Sentences -->
+<div class="flex flex-col gap-2">
+<label class="text-[#1b0d0d] dark:text-white text-base font-semibold">Câu ví dụ</label>
+<textarea class="form-input w-full rounded-lg text-[#1b0d0d] dark:text-white dark:bg-[#2a1818] border-[#e7cfcf] dark:border-[#4a2e2e] min-h-[80px] p-4 text-base focus:ring-primary/20" placeholder="Nhập câu ví dụ bằng tiếng Anh..."></textarea>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[#1b0d0d] dark:text-white text-base font-semibold">Dịch câu ví dụ</label>
+<textarea class="form-input w-full rounded-lg text-[#1b0d0d] dark:text-white dark:bg-[#2a1818] border-[#e7cfcf] dark:border-[#4a2e2e] min-h-[80px] p-4 text-base focus:ring-primary/20" placeholder="Nhập bản dịch tiếng Việt..."></textarea>
+</div>
+<!-- Image Upload -->
+<div class="flex flex-col gap-2">
+<label class="text-[#1b0d0d] dark:text-white text-base font-semibold">Hình ảnh minh họa</label>
+<div class="flex items-center justify-center w-full">
+<label class="flex flex-col items-center justify-center w-full h-32 border-2 border-[#e7cfcf] border-dashed rounded-xl cursor-pointer bg-[#fcf8f8] dark:bg-[#2a1818] hover:bg-primary/5 transition-colors group">
+<div class="flex flex-col items-center justify-center pt-5 pb-6">
+<span class="material-symbols-outlined text-primary mb-2 text-3xl">add_photo_alternate</span>
+<p class="mb-2 text-sm text-[#9a4c4c] dark:text-gray-400 font-medium">Tải lên hình ảnh minh họa</p>
+<p class="text-xs text-gray-500">PNG, JPG hoặc GIF (Max. 2MB)</p>
+</div>
+<input class="hidden" type="file"/>
+</label>
+</div>
+</div>
+</form>
+</div>
+<!-- Modal Footer -->
+<div class="px-8 py-6 bg-[#fcf8f8] dark:bg-[#2a1818] border-t border-[#e7cfcf] dark:border-[#3a2020] flex flex-col sm:flex-row-reverse items-center gap-4">
+<button class="w-full sm:w-auto px-10 py-3 bg-primary text-white rounded-lg font-bold text-base hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">save</span>
+                    Lưu từ vựng
+                </button>
+<button class="w-full sm:w-auto px-8 py-3 text-gray-500 dark:text-gray-400 font-medium text-base hover:text-primary transition-colors flex items-center justify-center">
+                    Hủy
+                </button>
+</div>
+</div>
+</main>
+<!-- Background Pattern Decoration -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 opacity-5 pointer-events-none">
+<div class="absolute top-10 left-10 w-64 h-64 bg-primary rounded-full blur-[100px]"></div>
+<div class="absolute bottom-10 right-10 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
+</div>
+</body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class="light"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vocabulary Detail View - Serendipity</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ef4444", 
+                        "primary-hover": "#dc2626",
+                        "brand-red": "#ef4444",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .text-glow-soft {
+                text-shadow: 0 0 15px rgba(239, 68, 68, 0.1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-900 overflow-hidden h-screen">
+<div class="fixed inset-0 z-0 flex flex-col pointer-events-none select-none filter blur-[4px] opacity-40">
+<div class="h-16 border-b border-gray-200 bg-white flex items-center px-8 justify-between">
+<div class="w-32 h-6 bg-gray-200 rounded"></div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-gray-200"></div>
+<div class="w-8 h-8 rounded-full bg-gray-200"></div>
+</div>
+</div>
+<div class="flex-1 p-8 grid grid-cols-3 gap-6">
+<div class="h-64 bg-white rounded-xl border border-gray-200"></div>
+<div class="h-64 bg-white rounded-xl border border-gray-200"></div>
+<div class="h-64 bg-white rounded-xl border border-gray-200"></div>
+</div>
+</div>
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/70 backdrop-blur-sm">
+<div class="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in duration-300">
+<button class="absolute right-6 top-6 z-30 group flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-slate-400 hover:text-brand-red hover:bg-red-50 transition-all duration-200">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+<div class="overflow-y-auto max-h-[90vh]">
+<div class="px-8 pt-12 pb-8 text-center">
+<h1 class="text-brand-red font-extrabold tracking-tight text-5xl sm:text-6xl mb-3 text-glow-soft">Serendipity</h1>
+<div class="flex items-center justify-center gap-3">
+<span class="text-slate-400 text-lg font-medium tracking-wider">/ˌsɛrənˈdɪpɪti/</span>
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-red-50 text-brand-red hover:bg-brand-red hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">volume_up</span>
+</button>
+</div>
+</div>
+<div class="px-8 mb-10">
+<div class="relative aspect-[16/9] w-full rounded-3xl overflow-hidden bg-slate-100 group">
+<img alt="Happy Discovery" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgYokb0jG_yYiMm9Pd4Aclyrz4BnWkjtq2iDgwvD5IU9jM066UyDy1giDibWSxZhCeTlYl--nhAcvTxSnD8a4sewWXfY6aoSPLwiH-Gc7aZfkHsyN2MDmyrOHfdQQO-UhFMBwFLZBjY5vtL935B_v6mbz_aGb2huaBUqOwFDAwZffSqs9KFd9ImoXeZGfY93ERK7wNtLoIlDHDWseuzpcLGpPnOj0EKGLJg7_8xrPZ0BhTKiHBjEXEePnxNEy9L-hoAdK4dMBCK-Hc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+</div>
+</div>
+<div class="px-8 sm:px-12 pb-12 space-y-10">
+<div class="relative flex items-center justify-center">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-100"></div></div>
+<div class="relative flex justify-center"><span class="h-1.5 w-1.5 rounded-full bg-brand-red/40"></span></div>
+</div>
+<section>
+<h3 class="text-[10px] font-bold text-brand-red/60 uppercase tracking-[0.2em] mb-4 text-center">Nghĩa tiếng Việt</h3>
+<div class="text-center">
+<h2 class="text-3xl font-bold text-slate-800 mb-2">Sự tình cờ may mắn</h2>
+<p class="text-slate-500 leading-relaxed max-w-md mx-auto">Khả năng tình cờ phát hiện ra những điều thú vị hoặc có giá trị một cách bất ngờ.</p>
+</div>
+</section>
+<div class="relative flex items-center justify-center">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-100"></div></div>
+<div class="relative flex justify-center"><span class="h-1.5 w-1.5 rounded-full bg-brand-red/40"></span></div>
+</div>
+<section>
+<h3 class="text-[10px] font-bold text-brand-red/60 uppercase tracking-[0.2em] mb-4">Example</h3>
+<div class="bg-red-50/40 border-l-4 border-brand-red rounded-r-2xl p-6">
+<p class="text-xl text-slate-800 font-semibold mb-3 leading-snug">
+                            "The discovery was a perfect example of <span class="text-brand-red">serendipity</span>."
+                        </p>
+<p class="text-slate-500 italic">
+                            "Khám phá này là một ví dụ hoàn hảo về sự tình cờ may mắn."
+                        </p>
+</div>
+</section>
+<div class="relative flex items-center justify-center">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-100"></div></div>
+<div class="relative flex justify-center"><span class="h-1.5 w-1.5 rounded-full bg-brand-red/40"></span></div>
+</div>
+<section>
+<h3 class="text-[10px] font-bold text-brand-red/60 uppercase tracking-[0.2em] mb-4">Synonyms</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-2 bg-slate-50 text-slate-600 rounded-xl text-sm font-medium border border-slate-100 hover:border-brand-red/30 hover:text-brand-red transition-all cursor-default">Fluke</span>
+<span class="px-4 py-2 bg-slate-50 text-slate-600 rounded-xl text-sm font-medium border border-slate-100 hover:border-brand-red/30 hover:text-brand-red transition-all cursor-default">Chance</span>
+<span class="px-4 py-2 bg-slate-50 text-slate-600 rounded-xl text-sm font-medium border border-slate-100 hover:border-brand-red/30 hover:text-brand-red transition-all cursor-default">Fortuity</span>
+<span class="px-4 py-2 bg-slate-50 text-slate-600 rounded-xl text-sm font-medium border border-slate-100 hover:border-brand-red/30 hover:text-brand-red transition-all cursor-default">Happy Accident</span>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

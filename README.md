@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ToeVol - English Vocabulary Learning App
+
+An English vocabulary learning web application built with Next.js and Supabase.
+
+## Features
+
+- 📚 **Vocabulary Management**: Store and manage English vocabulary with Vietnamese meanings, examples, and synonyms
+- 🔍 **Search**: Search vocabularies by English word or Vietnamese meaning
+- 📝 **Review Sessions**: Create randomized review sessions to test your knowledge
+- ✅ **Answer Checking**: Smart answer validation with synonym support
+
+## Tech Stack
+
+- **Frontend**: Next.js 16 (App Router), React 19, TailwindCSS 4
+- **Backend**: Supabase (PostgreSQL)
+- **Language**: TypeScript
 
 ## Getting Started
 
-First, run the development server:
+### 1. Prerequisites
+
+- Node.js 18+
+- Supabase account (free tier works)
+
+### 2. Setup Supabase
+
+1. Create a new project at [supabase.com](https://supabase.com)
+2. Go to SQL Editor and run the schema from `supabase/schema.sql`
+3. Copy your project URL and API keys from Settings > API
+
+### 3. Environment Variables
+
+Copy `.env.example` to `.env.local` and fill in your Supabase credentials:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```env
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Install & Run
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000)
 
-To learn more about Next.js, take a look at the following resources:
+## API Reference
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Vocabulary APIs
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Method | Endpoint                | Description              |
+| ------ | ----------------------- | ------------------------ |
+| GET    | `/api/vocabularies`     | List/search vocabularies |
+| GET    | `/api/vocabularies/:id` | Get vocabulary detail    |
+| POST   | `/api/vocabularies`     | Create vocabulary        |
+| PUT    | `/api/vocabularies/:id` | Update vocabulary        |
+| DELETE | `/api/vocabularies/:id` | Delete vocabulary        |
 
-## Deploy on Vercel
+**Query Parameters for GET /api/vocabularies:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `word_en` - Search by English word (partial match)
+- `meaning_vi` - Search by Vietnamese meaning (partial match)
+- `page` - Page number (default: 1)
+- `limit` - Items per page (default: 20)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Review APIs
+
+| Method | Endpoint                 | Description           |
+| ------ | ------------------------ | --------------------- |
+| GET    | `/api/reviews`           | List review sessions  |
+| POST   | `/api/reviews`           | Create review session |
+| GET    | `/api/reviews/:id`       | Get session results   |
+| POST   | `/api/reviews/:id/check` | Check answer          |
+
+**Create Review Session (POST /api/reviews):**
+
+```json
+{
+  "number_of_questions": 10
+}
+```
+
+**Check Answer (POST /api/reviews/:id/check):**
+
+```json
+{
+  "question_id": "uuid",
+  "user_word": "happy",
+  "user_synonyms": "joyful, cheerful"
+}
+```
+
+## Database Schema
+
+- **vocabularies** - English words with Vietnamese meanings
+- **synonyms** - Synonyms for each vocabulary
+- **review_sessions** - Review session records
+- **review_questions** - Individual questions in each session
+
+See `supabase/schema.sql` for full schema.
+
+## Project Structure
+
+```
+├── app/
+│   ├── api/
+│   │   ├── vocabularies/      # Vocabulary CRUD APIs
+│   │   └── reviews/           # Review session APIs
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── lib/
+│   ├── supabase.ts           # Supabase client
+│   ├── types.ts              # TypeScript types
+│   └── review-utils.ts       # Review helper functions
+├── html-stich/               # UI HTML templates
+├── supabase/
+│   └── schema.sql            # Database schema
+└── .env.example              # Environment template
+```
+
+## License
+
+MIT
