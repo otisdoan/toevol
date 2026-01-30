@@ -1,26 +1,118 @@
 "use client";
 
+import { useState } from "react";
 import { VocabularyWithSynonyms } from "@/lib/types";
 
 interface VocabularyDetailModalProps {
   vocabulary: VocabularyWithSynonyms;
   onClose: () => void;
+  onEdit: () => void;
+  onDelete: () => void;
 }
 
 export default function VocabularyDetailModal({
   vocabulary,
   onClose,
+  onEdit,
+  onDelete,
 }: VocabularyDetailModalProps) {
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      const response = await fetch(`/api/vocabularies/${vocabulary.id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        onDelete();
+        onClose();
+      } else {
+        const error = await response.json();
+        alert(error.error || "Failed to delete vocabulary");
+      }
+    } catch (error) {
+      console.error("Error deleting vocabulary:", error);
+      alert("An error occurred");
+    } finally {
+      setIsDeleting(false);
+      setShowDeleteConfirm(false);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/70 backdrop-blur-sm">
       <div className="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in duration-300">
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute right-6 top-6 z-30 group flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-slate-400 hover:text-[#e54d42] hover:bg-red-50 transition-all duration-200"
-        >
-          <span className="material-symbols-outlined text-2xl">close</span>
-        </button>
+        {/* Action Buttons */}
+        <div className="absolute right-6 top-6 z-30 flex items-center gap-2">
+          {/* Edit Button */}
+          <button
+            onClick={onEdit}
+            className="group flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-slate-400 hover:text-blue-500 hover:bg-blue-50 transition-all duration-200"
+            title="Chỉnh sửa"
+          >
+            <span className="material-symbols-outlined text-xl">edit</span>
+          </button>
+          {/* Delete Button */}
+          <button
+            onClick={() => setShowDeleteConfirm(true)}
+            className="group flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-slate-400 hover:text-red-500 hover:bg-red-50 transition-all duration-200"
+            title="Xóa"
+          >
+            <span className="material-symbols-outlined text-xl">delete</span>
+          </button>
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="group flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-slate-400 hover:text-[#e54d42] hover:bg-red-50 transition-all duration-200"
+          >
+            <span className="material-symbols-outlined text-2xl">close</span>
+          </button>
+        </div>
+
+        {/* Delete Confirmation Modal */}
+        {showDeleteConfirm && (
+          <div className="absolute inset-0 z-40 flex items-center justify-center bg-black/50 backdrop-blur-sm rounded-[2rem]">
+            <div className="bg-white rounded-xl p-6 mx-4 max-w-sm shadow-xl">
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-red-100 mx-auto mb-4">
+                <span className="material-symbols-outlined text-2xl text-red-600">
+                  warning
+                </span>
+              </div>
+              <h3 className="text-lg font-bold text-slate-800 text-center mb-2">
+                Xác nhận xóa
+              </h3>
+              <p className="text-sm text-slate-500 text-center mb-6">
+                Bạn có chắc muốn xóa từ &quot;{vocabulary.word_en}&quot;? Hành
+                động này không thể hoàn tác.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowDeleteConfirm(false)}
+                  className="flex-1 px-4 py-2 text-slate-600 bg-slate-100 rounded-lg font-medium hover:bg-slate-200 transition-colors"
+                >
+                  Hủy
+                </button>
+                <button
+                  onClick={handleDelete}
+                  disabled={isDeleting}
+                  className="flex-1 px-4 py-2 text-white bg-red-600 rounded-lg font-medium hover:bg-red-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                >
+                  {isDeleting ? (
+                    <>
+                      <span className="animate-spin">⏳</span>
+                      Đang xóa...
+                    </>
+                  ) : (
+                    "Xóa"
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="overflow-y-auto max-h-[90vh]">
           {/* Header */}

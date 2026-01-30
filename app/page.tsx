@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import VocabularyCard from "@/components/VocabularyCard";
 import VocabularyDetailModal from "@/components/VocabularyDetailModal";
 import AddVocabularyModal from "@/components/AddVocabularyModal";
+import EditVocabularyModal from "@/components/EditVocabularyModal";
 import { VocabularyWithSynonyms } from "@/lib/types";
 
 const PARTS_OF_SPEECH = [
@@ -26,6 +27,7 @@ export default function VocabularyExplorer() {
   const [selectedVocab, setSelectedVocab] =
     useState<VocabularyWithSynonyms | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 20,
@@ -261,10 +263,30 @@ export default function VocabularyExplorer() {
       <Footer />
 
       {/* Modals */}
-      {selectedVocab && (
+      {selectedVocab && !showEditModal && (
         <VocabularyDetailModal
           vocabulary={selectedVocab}
           onClose={() => setSelectedVocab(null)}
+          onEdit={() => setShowEditModal(true)}
+          onDelete={() => {
+            setSelectedVocab(null);
+            fetchVocabularies();
+          }}
+        />
+      )}
+
+      {showEditModal && selectedVocab && (
+        <EditVocabularyModal
+          vocabulary={selectedVocab}
+          onClose={() => {
+            setShowEditModal(false);
+            setSelectedVocab(null);
+          }}
+          onSuccess={() => {
+            setShowEditModal(false);
+            setSelectedVocab(null);
+            fetchVocabularies();
+          }}
         />
       )}
 
